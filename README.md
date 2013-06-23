@@ -6,6 +6,8 @@ Isn't it annoying how `OpenStruct.new` takes a hash, but the the arguments to `S
 
 Do you find you always use an `OpenStruct` when you don't really care if it's open, you just want an easy way to create an object from a hash?
 
+Did you know that creating an `OpenStruct` blows away Ruby's method cache?
+
 Isn't it irritating how you have to remember that, to use `OpenStruct`, you need to `require 'ostruct'`?
 
 Have you ever wished you could create a `Struct` or `OpenStruct`, but make it immutable?
@@ -42,6 +44,8 @@ Immutable structs can't have their attributes changed after creation.
 
     class MyStruct < FinerStruct::Immutable(:a, :b)
     struct = MyStruct.new(a: 1, b: 2)
+
+    MyStruct.new(a: 1, b: 2, c: 3) # Exception!
 
 ### Mutable Structs
 
