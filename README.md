@@ -4,7 +4,7 @@ A nicer replacement for Ruby's Struct and OpenStruct.
 
 Isn't it annoying how `OpenStruct.new` takes a hash, but the the arguments to `Struct.new` have to be ordered?
 
-Don't you find you always use an `OpenStruct` when you don't really care if it's open, you just want an easy way to create an object from a hash?
+Do you find you always use an `OpenStruct` when you don't really care if it's open, you just want an easy way to create an object from a hash?
 
 Isn't it irritating how you have to remember that, to use `OpenStruct`, you need to `require 'ostruct'`?
 
