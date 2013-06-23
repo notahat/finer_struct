@@ -11,7 +11,7 @@ end
 
 module FinerStruct
 
-  describe "an anonymouse immutable struct" do
+  describe "an anonymous immutable struct" do
     subject { FinerStruct::Immutable.new(a: 1, b: 2) }
 
     it_behaves_like "an immutable struct"
@@ -22,10 +22,7 @@ module FinerStruct
     subject      { klass.new(a: 1, b: 2) }
 
     it_behaves_like "an immutable struct"
-
-    it "complains if you set an attribute that the struct doesn't have" do
-      expect { klass.new(c: 3) }.to raise_error(ArgumentError, "no such attribute: c")
-    end
+    it_behaves_like "a named struct"
   end
 
 end

@@ -26,18 +26,38 @@ Or install it yourself as:
 
 ## Usage
 
-### Anonymous structs
+### Immutable Structs
+
+Immutable structs can't have their attributes changed after creation.
+
+#### Anonymous immutable structs
 
     struct = FinerStruct::Immutable.new(a: 1, b: 2)
+
     struct.a # => 1
     struct.b # => 2
+    struct.a = 3 # Exception!
 
-### Named structs
+#### Named immutable structs
 
     class MyStruct < FinerStruct::Immutable(:a, :b)
     struct = MyStruct.new(a: 1, b: 2)
-    struct.a # => 1
-    struct.b # => 2
+
+### Mutable Structs
+
+Mutable structs let you assign attributes at any time.
+
+#### Anonymous mutable structs
+
+    struct = FinerStruct::Mutable.new(a: 1, b: 2)
+
+    struct.a = 3
+    struct.a # => 3
+
+#### Named mutable structs
+
+    class MyStruct < FinerStruct::Mutable(:a, :b)
+    struct = MyStruct.new(a: 1, b: 2)
 
 ## Contributing
 
