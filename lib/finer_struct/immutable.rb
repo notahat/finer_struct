@@ -9,11 +9,15 @@ module FinerStruct
     end
 
     def method_missing(method, *arguments)
-      if @attributes.has_key?(method)
+      if respond_to?(method)
         @attributes[method]
       else
         super
       end
+    end
+
+    def respond_to?(method)
+      @attributes.has_key?(method)
     end
   end
 

@@ -9,13 +9,17 @@ module FinerStruct
     end
 
     def method_missing(method, *arguments)
-      if @attributes.has_key?(method)
+      if respond_to?(method)
         @attributes[method]
       elsif is_assigment?(method) && @attributes.has_key?(key_for_assignment(method))
         @attributes[key_for_assignment(method)] = arguments[0]
       else
         super
       end
+    end
+
+    def respond_to?(method)
+      @attributes.has_key?(method)
     end
 
   private
