@@ -7,6 +7,10 @@ shared_examples "an immutable struct" do
   it "complains if you try to write an attribute" do
     expect { subject.a = 3 }.to raise_error(NoMethodError)
   end
+
+  it "is frozen" do
+    subject.should be_frozen
+  end
 end
 
 module FinerStruct

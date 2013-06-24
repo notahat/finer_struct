@@ -3,9 +3,15 @@ require 'finer_struct/named'
 
 module FinerStruct
 
-  class Mutable < Immutable
+  class Mutable
+    def initialize(attributes)
+      @attributes = attributes.dup
+    end
+
     def method_missing(method, *arguments)
-      if is_assigment?(method) && @attributes.has_key?(key_for_assignment(method))
+      if @attributes.has_key?(method)
+        @attributes[method]
+      elsif is_assigment?(method) && @attributes.has_key?(key_for_assignment(method))
         @attributes[key_for_assignment(method)] = arguments[0]
       else
         super
