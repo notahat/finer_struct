@@ -1,4 +1,5 @@
 require 'finer_struct/immutable'
+require 'finer_struct/named'
 
 module FinerStruct
 
@@ -23,23 +24,8 @@ module FinerStruct
   end
 
   def self.Mutable(*attribute_names)
-    Class.new do
-      @attribute_names = attribute_names
-
-      class << self
-        attr_reader :attribute_names
-      end
-
+    Named.build_class(attribute_names) do
       attr_accessor(*attribute_names)
-
-      def initialize(attributes = {})
-        attributes.each_pair do |key, value|
-          unless self.class.attribute_names.include?(key)
-            raise(ArgumentError, "no such attribute: #{key}")
-          end
-          instance_variable_set("@#{key}", value)
-        end
-      end
     end
   end
 
