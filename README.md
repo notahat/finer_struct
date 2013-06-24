@@ -42,7 +42,7 @@ Immutable structs can't have their attributes changed after creation.
 
 #### Named immutable structs
 
-    class MyStruct < FinerStruct::Immutable(:a, :b)
+    class MyStruct < FinerStruct::Immutable(:a, :b); end
     struct = MyStruct.new(a: 1, b: 2)
 
     MyStruct.new(a: 1, b: 2, c: 3) # Exception!
@@ -60,7 +60,7 @@ Mutable structs let you assign attributes at any time.
 
 #### Named mutable structs
 
-    class MyStruct < FinerStruct::Mutable(:a, :b)
+    class MyStruct < FinerStruct::Mutable(:a, :b); end
     struct = MyStruct.new(a: 1, b: 2)
 
 ## Contributing

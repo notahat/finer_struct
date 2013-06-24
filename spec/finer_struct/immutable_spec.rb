@@ -18,7 +18,7 @@ module FinerStruct
   end
 
   describe "a named immutable struct" do
-    let(:klass)  { FinerStruct::Immutable(:a, :b) }
+    let(:klass)  { Class.new(FinerStruct::Immutable(:a, :b)) }
     subject      { klass.new(a: 1, b: 2) }
 
     it_behaves_like "an immutable struct"

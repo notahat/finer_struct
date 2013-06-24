@@ -3,18 +3,14 @@ module FinerStruct
   module Named
     def self.build_class(attribute_names, &block)
       Class.new do
-        @attribute_names = attribute_names
-
-        class << self
-          attr_reader :attribute_names
-        end
+        define_method(:attribute_names, -> { attribute_names })
 
         def initialize(attributes = {})
-          attributes.each_pair do |key, value|
-            unless self.class.attribute_names.include?(key)
-              raise(ArgumentError, "no such attribute: #{key}")
+          attributes.each_pair do |name, value|
+            unless attribute_names.include?(name)
+              raise(ArgumentError, "no such attribute: #{name}")
             end
-            instance_variable_set("@#{key}", value)
+            instance_variable_set("@#{name}", value)
           end
         end
 

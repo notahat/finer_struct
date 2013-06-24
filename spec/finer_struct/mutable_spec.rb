@@ -19,7 +19,7 @@ module FinerStruct
   end
 
   describe "a named mutable struct" do
-    let(:klass)  { FinerStruct::Mutable(:a, :b) }
+    let(:klass)  { Class.new(FinerStruct::Mutable(:a, :b)) }
     subject      { klass.new(a: 1, b: 2) }
 
     it_behaves_like "a mutable struct"
