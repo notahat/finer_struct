@@ -2,7 +2,7 @@
 
 A nicer replacement for Ruby's Struct and OpenStruct.
 
-Isn't it annoying how `OpenStruct.new` takes a hash, but the the arguments to `Struct.new` have to be ordered?
+Isn't it annoying how `OpenStruct.new` takes a hash, but the arguments to `Struct.new` have to be ordered?
 
 Do you find you always use an `OpenStruct` when you don't really care if it's open, you just want an easy way to create an object from a hash?
 
@@ -16,15 +16,21 @@ Have you ever wished you could create a `Struct` or `OpenStruct`, but make it im
 
 Add this line to your application's Gemfile:
 
-    gem 'finer_struct'
+```ruby
+gem 'finer_struct'
+```
 
 And then execute:
 
-    $ bundle
+```bash
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install finer_struct
+```bash
+$ gem install finer_struct
+```
 
 ## Usage
 
@@ -34,18 +40,22 @@ Immutable structs can't have their attributes changed after creation.
 
 #### Anonymous immutable structs
 
-    struct = FinerStruct::Immutable.new(a: 1, b: 2)
+```ruby
+struct = FinerStruct::Immutable.new(a: 1, b: 2)
 
-    struct.a # => 1
-    struct.b # => 2
-    struct.a = 3 # Exception!
+struct.a # => 1
+struct.b # => 2
+struct.a = 3 # Exception!
+```
 
 #### Named immutable structs
 
-    class MyStruct < FinerStruct::Immutable(:a, :b); end
-    struct = MyStruct.new(a: 1, b: 2)
+```ruby
+class MyStruct < FinerStruct::Immutable(:a, :b); end
+struct = MyStruct.new(a: 1, b: 2)
 
-    MyStruct.new(a: 1, b: 2, c: 3) # Exception!
+MyStruct.new(a: 1, b: 2, c: 3) # Exception!
+```
 
 ### Mutable Structs
 
@@ -53,15 +63,19 @@ Mutable structs let you assign attributes at any time.
 
 #### Anonymous mutable structs
 
-    struct = FinerStruct::Mutable.new(a: 1, b: 2)
+```ruby
+struct = FinerStruct::Mutable.new(a: 1, b: 2)
 
-    struct.a = 3
-    struct.a # => 3
+struct.a = 3
+struct.a # => 3
+```
 
 #### Named mutable structs
 
-    class MyStruct < FinerStruct::Mutable(:a, :b); end
-    struct = MyStruct.new(a: 1, b: 2)
+```ruby
+class MyStruct < FinerStruct::Mutable(:a, :b); end
+struct = MyStruct.new(a: 1, b: 2)
+```
 
 ## Contributing
 
