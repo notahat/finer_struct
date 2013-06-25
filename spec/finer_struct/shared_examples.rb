@@ -9,7 +9,7 @@ shared_examples "a struct" do
     expect(subject).to respond_to :b
   end
 
-  it "doesn't respond to attribute names that the struct don't have" do
+  it "doesn't respond to attribute names that the struct doesn't have" do
     expect(subject).not_to respond_to :c
   end
 end
