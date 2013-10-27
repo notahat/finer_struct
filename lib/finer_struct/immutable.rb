@@ -15,6 +15,10 @@ module FinerStruct
         super
       end
     end
+
+    def respond_to?(method)
+      @attributes.has_key?(method) || super
+    end
   end
 
   def self.Immutable(*attribute_names)

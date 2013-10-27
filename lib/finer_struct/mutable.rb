@@ -18,6 +18,10 @@ module FinerStruct
       end
     end
 
+    def respond_to?(method)
+      @attributes.has_key?(method) || super
+    end
+
   private
 
     def is_assigment?(method)
