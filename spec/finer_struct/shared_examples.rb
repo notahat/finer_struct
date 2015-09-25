@@ -23,3 +23,17 @@ shared_examples "a named struct" do
     expect { klass.new(c: 3) }.to raise_error(ArgumentError, "no such attribute: c")
   end
 end
+
+shared_examples "a value object" do
+  it "is equal to another object if it has the same values" do
+    another_object = subject.class.new(a: 1, b: 2)
+
+    expect(subject).to eq(another_object)
+  end
+
+  it "is not equal to another object if it has different values" do
+    another_object = subject.class.new(a: 1, b: 3)
+
+    expect(subject).not_to eq(another_object)
+  end
+end

@@ -1,6 +1,9 @@
+require 'finer_struct/value_object'
+
 module FinerStruct
 
   module Named
+    include ValueObject
 
     def initialize(attributes = {})
       attributes.each_pair do |name, value|

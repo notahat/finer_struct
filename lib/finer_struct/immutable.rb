@@ -1,8 +1,11 @@
 require 'finer_struct/named'
+require 'finer_struct/value_object'
 
 module FinerStruct
 
   class Immutable
+    include ValueObject
+
     def initialize(attributes = {})
       @attributes = attributes.dup.freeze
       freeze
