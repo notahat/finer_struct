@@ -22,14 +22,7 @@ module FinerStruct
   end
 
   def self.Immutable(*attribute_names)
-    Named.build_class(attribute_names) do
-      attr_reader(*attribute_names)
-
-      def initialize(*)
-        super
-        freeze
-      end
-    end
+    Named.build_class(Immutable, attribute_names)
   end
 
 end
