@@ -8,7 +8,8 @@ module FinerStruct
         raise(ArgumentError, "unknown attributes: #{unknown_attributes.join(', ')}")
       end
 
-      super(attributes)
+      nil_attributes = Hash[attribute_names.zip()]
+      super(nil_attributes.merge!(attributes))
     end
 
     def self.build_class(superclass, attribute_names)
