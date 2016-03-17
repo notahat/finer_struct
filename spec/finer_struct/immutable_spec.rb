@@ -9,7 +9,11 @@ shared_examples "an immutable struct" do
   end
 
   it "is frozen" do
-    subject.should be_frozen
+    expect(subject).to be_frozen
+  end
+
+  it "converts to a frozen hash" do
+    expect(subject.to_hash).to be_frozen
   end
 end
 
