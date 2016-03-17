@@ -3,6 +3,7 @@ require 'finer_struct/shared_examples'
 
 shared_examples "a mutable struct" do
   it_behaves_like "a struct"
+  it_behaves_like "a value object"
 
   it "lets you write attributes" do
     subject.a = 3

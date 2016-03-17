@@ -1,9 +1,12 @@
 require 'finer_struct/immutable'
 require 'finer_struct/named'
+require 'finer_struct/value_object'
 
 module FinerStruct
 
   class Mutable
+    include ValueObject
+
     def initialize(attributes)
       @attributes = attributes.dup
     end

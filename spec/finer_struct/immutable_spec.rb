@@ -3,6 +3,7 @@ require 'finer_struct/shared_examples'
 
 shared_examples "an immutable struct" do
   it_behaves_like "a struct"
+  it_behaves_like "a value object"
 
   it "complains if you try to write an attribute" do
     expect { subject.a = 3 }.to raise_error(NoMethodError)
