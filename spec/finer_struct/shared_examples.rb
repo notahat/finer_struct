@@ -19,7 +19,7 @@ shared_examples "a struct" do
 end
 
 shared_examples "a named struct" do
-  it "complains if you set an attribute that the struct doesn't have" do
-    expect { klass.new(c: 3) }.to raise_error(ArgumentError, "no such attribute: c")
+  it "complains if you set attributes that the struct doesn't have" do
+    expect { klass.new(c: 3, d: 4) }.to raise_error(ArgumentError, "unknown attributes: c, d")
   end
 end

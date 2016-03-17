@@ -3,21 +3,19 @@ module FinerStruct
   module Named
 
     def initialize(attributes = {})
-      attributes.each_pair do |name, value|
-        unless attribute_names.include?(name)
-          raise(ArgumentError, "no such attribute: #{name}")
-        end
-        instance_variable_set("@#{name}", value)
+      unknown_attributes = attributes.keys - attribute_names
+      unless unknown_attributes.empty?
+        raise(ArgumentError, "unknown attributes: #{unknown_attributes.join(', ')}")
       end
+
+      super(attributes)
     end
 
-    def self.build_class(attribute_names, &block)
-      Class.new do
+    def self.build_class(superclass, attribute_names)
+      Class.new(superclass) do
         define_method(:attribute_names, -> { attribute_names })
 
         include Named
-
-        class_eval(&block)
       end
     end
   end
