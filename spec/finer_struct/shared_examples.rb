@@ -16,6 +16,10 @@ shared_examples "a struct" do
   it "doesn't respond to attribute names that the struct doesn't have" do
     expect(subject).not_to respond_to :c
   end
+
+  it "converts to a hash" do
+    expect(subject.to_hash).to eq(a: 1 ,b: 2)
+  end
 end
 
 shared_examples "a named struct" do

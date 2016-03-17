@@ -22,6 +22,10 @@ module FinerStruct
       @attributes.has_key?(method) || super
     end
 
+    def to_hash
+      @attributes.dup
+    end
+
   private
 
     def is_assigment?(method)
