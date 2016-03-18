@@ -1,5 +1,4 @@
 module FinerStruct
-
   module Named
 
     def initialize(attributes = {})
@@ -19,6 +18,6 @@ module FinerStruct
         include Named
       end
     end
-  end
 
+  end
 end

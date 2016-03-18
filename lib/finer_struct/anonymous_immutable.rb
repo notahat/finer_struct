@@ -1,7 +1,6 @@
 require 'finer_struct/named'
 
 module FinerStruct
-
   class Immutable
     def initialize(attributes = {})
       @attributes = attributes.dup.freeze
@@ -29,9 +28,4 @@ module FinerStruct
     end
 
   end
-
-  def self.Immutable(*attribute_names)
-    Named.build_class(Immutable, attribute_names)
-  end
-
 end

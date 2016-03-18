@@ -1,8 +1,4 @@
-require 'finer_struct/immutable'
-require 'finer_struct/named'
-
 module FinerStruct
-
   class Mutable
     def initialize(attributes)
       @attributes = attributes.dup
@@ -40,10 +36,5 @@ module FinerStruct
       method.to_s[0..-2].to_sym
     end
   end
-
-  def self.Mutable(*attribute_names)
-    Named.build_class(Mutable, attribute_names)
-  end
-
 end
 

@@ -1,4 +1,4 @@
-require 'finer_struct/immutable'
+require 'finer_struct'
 require 'finer_struct/shared_examples'
 
 shared_examples "an immutable struct" do
