@@ -23,6 +23,11 @@ module FinerStruct
     def to_hash
       @attributes
     end
+
+    def ==(other)
+      other.class == self.class && other.to_hash == to_hash
+    end
+
   end
 
   def self.Immutable(*attribute_names)
