@@ -1,5 +1,6 @@
 module FinerStruct
   class Mutable
+
     def initialize(attributes)
       @attributes = attributes.dup
     end
@@ -35,6 +36,7 @@ module FinerStruct
     def key_for_assignment(method)
       method.to_s[0..-2].to_sym
     end
+
   end
 end
 
