@@ -26,6 +26,10 @@ module FinerStruct
       @attributes.dup
     end
 
+    def ==(other)
+      other.class == self.class && other.to_hash == to_hash
+    end
+
   private
 
     def is_assigment?(method)
