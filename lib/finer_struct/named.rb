@@ -7,15 +7,20 @@ module FinerStruct
         raise(ArgumentError, "unknown attributes: #{unknown_attributes.join(', ')}")
       end
 
-      nil_attributes = Hash[attribute_names.zip()]
-      super(nil_attributes.merge!(attributes))
+      super
     end
 
-    def self.build_class(superclass, attribute_names)
+    def self.build_class(superclass, attribute_names, &block)
       Class.new(superclass) do
+        include Named
+
         define_method(:attribute_names, -> { attribute_names })
 
-        include Named
+        attribute_names.each do |name|
+          define_method(name) { @attributes[name]  }
+        end
+
+        class_eval(&block) if block_given?
       end
     end
 

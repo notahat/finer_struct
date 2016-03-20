@@ -6,4 +6,11 @@ shared_examples "a named struct" do
   it "returns nil for attributes that aren't explicitly set" do
     expect(klass.new(a: 1).b).to be_nil
   end
+
+  it "allows you to alias attributes" do
+    subclass = Class.new(klass) do
+      alias_method :c, :a
+    end
+    expect(subclass.new(a: 1).c).to eq(1)
+  end
 end

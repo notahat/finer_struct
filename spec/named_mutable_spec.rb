@@ -12,4 +12,13 @@ describe "a named mutable struct" do
   it_behaves_like "a struct"
   it_behaves_like "a named struct"
   it_behaves_like "a mutable struct"
+
+  it "allows you alias attribute assignments" do
+    subclass = Class.new(klass) do
+      alias_method :c=, :a=
+    end
+    struct = subclass.new(a: 1)
+    struct.c = 3
+    expect(struct.a).to eq(3)
+  end
 end
