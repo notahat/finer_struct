@@ -5,16 +5,16 @@ shared_examples "a struct" do
   end
 
   it "responds to attribute names" do
-    expect(subject).to respond_to :a
-    expect(subject).to respond_to :b
+    expect(subject).to respond_to(:a)
+    expect(subject).to respond_to(:b)
   end
 
   it "doesn't respond to attribute names that the struct doesn't have" do
-    expect(subject).not_to respond_to :c
+    expect(subject).not_to respond_to(:c)
   end
 
   it "responds to non-attribute methods" do
-    expect(subject).to respond_to :class
+    expect(subject).to respond_to(:class)
   end
 
   it "converts to a hash" do
@@ -31,15 +31,5 @@ shared_examples "a struct" do
 
   it "is not equal to an object of a different class" do
     expect(subject).to_not eq("rhubarb")
-  end
-end
-
-shared_examples "a named struct" do
-  it "complains if you set attributes that the struct doesn't have" do
-    expect { klass.new(c: 3, d: 4) }.to raise_error(ArgumentError, "unknown attributes: c, d")
-  end
-
-  it "returns nil for attributes that aren't explicitly set" do
-    expect(klass.new(a: 1).b).to be_nil
   end
 end
