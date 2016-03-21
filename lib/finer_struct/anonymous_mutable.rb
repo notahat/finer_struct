@@ -6,9 +6,9 @@ module FinerStruct
     end
 
     def method_missing(method, *arguments)
-      if @attributes.has_key?(method)
+      if has_attribute?(method)
         @attributes[method]
-      elsif is_assigment?(method) && @attributes.has_key?(key_for_assignment(method))
+      elsif is_assigment?(method) && has_attribute?(key_for_assignment(method))
         @attributes[key_for_assignment(method)] = arguments[0]
       else
         super
@@ -16,7 +16,7 @@ module FinerStruct
     end
 
     def respond_to?(method)
-      @attributes.has_key?(method) || super
+      has_attribute?(method) || super
     end
 
     def to_hash
@@ -37,6 +37,9 @@ module FinerStruct
       method.to_s[0..-2].to_sym
     end
 
+    def has_attribute?(attribute)
+      @attributes && @attributes.has_key?(attribute)
+    end
   end
 end
 

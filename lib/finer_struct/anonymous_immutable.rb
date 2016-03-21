@@ -7,7 +7,7 @@ module FinerStruct
     end
 
     def method_missing(method, *arguments)
-      if @attributes.has_key?(method)
+      if has_attribute?(method)
         @attributes[method]
       else
         super
@@ -15,7 +15,7 @@ module FinerStruct
     end
 
     def respond_to?(method)
-      @attributes.has_key?(method) || super
+      has_attribute?(method) || super
     end
 
     def to_hash
@@ -26,5 +26,10 @@ module FinerStruct
       other.class == self.class && other.to_hash == to_hash
     end
 
+  private
+
+    def has_attribute?(attribute)
+      @attributes && @attributes.has_key?(attribute)
+    end
   end
 end
