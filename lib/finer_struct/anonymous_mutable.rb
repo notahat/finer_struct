@@ -15,7 +15,7 @@ module FinerStruct
       end
     end
 
-    def respond_to?(method)
+    def respond_to?(method, include_all = false)
       has_attribute?(method) || super
     end
 
